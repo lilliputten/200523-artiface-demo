@@ -1,0 +1,26 @@
+.DS_Store
+node_modules
+\!UNUSED*
+\!ARC*
+
+# IDE
+.idea
+/.vscode/
+*.session
+
+# Builds
+/build*
+
+# Temp project files
+.webpack-stats.json
+tags
+.*.sw?
+*.tmp
+*.bak
+*~
+*_
+
+# -- Ignore personal config files --
+# .lvimrc
+# .projectroot
+webpack.env.local.js
