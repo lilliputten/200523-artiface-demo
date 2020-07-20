@@ -12,10 +12,12 @@ import 'react-app-polyfill/stable'
 import React from 'react'
 import { render } from 'react-dom'
 
-import ArtiFaceDist from 'ArtiFaceDist'
-// console.log(ArtiFaceDist && ArtiFaceDist.default)
+import * as ArtiFaceDist from 'ArtiFaceDist'
+// console.log(ArtiFaceDist, ArtiFaceDist && ArtiFaceDist.default)
 // debugger
 const { Hello } = ArtiFaceDist
+// console.log(Hello)
+// debugger
 import 'ArtiFaceDist/styles.css'
 
 // Root styles
