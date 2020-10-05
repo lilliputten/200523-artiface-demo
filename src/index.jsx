@@ -13,8 +13,6 @@ import React from 'react'
 import { render } from 'react-dom'
 
 import * as ArtiFaceDist from 'ArtiFaceDist'
-// console.log(ArtiFaceDist, ArtiFaceDist && ArtiFaceDist.default)
-// debugger
 const { Hello } = ArtiFaceDist
 console.log(Hello)
 debugger
