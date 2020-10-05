@@ -1,7 +1,7 @@
 {
-  "name": "ArtiFaceDemo",
+  "name": "YouFaceDemo",
   "version": "0.0.1",
-  "description": "Arti Webpack UI Library Demo",
+  "description": "Arti UI Components Library Demo",
   "keywords": [
     "UI",
     "webpack",
@@ -11,7 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "ArtiFaceDist": "git+https://github.com/lilliputten/200523-artiface-dist.git",
+    "DistName": "git+git@github.com:lilliputten/YouFaceDist.git",
     "es5-shim": "^4.5.14",
     "react": "^16.13.1",
     "react-app-polyfill": "^1.0.6",

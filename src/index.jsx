@@ -16,8 +16,8 @@ import * as ArtiFaceDist from 'ArtiFaceDist'
 // console.log(ArtiFaceDist, ArtiFaceDist && ArtiFaceDist.default)
 // debugger
 const { Hello } = ArtiFaceDist
-// console.log(Hello)
-// debugger
+console.log(Hello)
+debugger
 import 'ArtiFaceDist/styles.css'
 
 // Root styles
