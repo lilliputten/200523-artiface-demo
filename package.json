@@ -12,6 +12,7 @@
   "license": "ISC",
   "dependencies": {
     "DistName": "git+git@github.com:lilliputten/YouFaceDist.git",
+    "YouFaceDist": "git+ssh://git@github.com/lilliputten/YouFaceDist.git",
     "es5-shim": "^4.5.14",
     "react": "^16.13.1",
     "react-app-polyfill": "^1.0.6",
