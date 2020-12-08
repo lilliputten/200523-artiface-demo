@@ -10,8 +10,14 @@
   ],
   "author": "",
   "license": "ISC",
+  "exampleDependencies": {
+    "WebUiCoreGithubSSH": "git+ssh://git@github.com/lilliputten/WebUiCoreDist.git",
+    "WebUiDistGithubHttps": "git+https://github.com/lilliputten/WebUiCoreDist.git",
+    "WebUiCoreDistTarball": "http://gitlab.local/lilliputten/WebUiCoreDist/-/archive/master/WebUiCoreDist-master.tar.gz",
+    "NOTE": "This section only for demo purposes!"
+  },
   "dependencies": {
-    "WebUiCore": "git+ssh://git@github.com/lilliputten/WebUiCoreDist.git",
+    "WebUiCore": "http://gitlab.local/lilliputten/WebUiCoreDist/-/archive/master/WebUiCoreDist-master.tar.gz",
     "es5-shim": "^4.5.14",
     "react": "^16.13.1",
     "react-app-polyfill": "^1.0.6",

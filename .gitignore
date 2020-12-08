@@ -2,6 +2,7 @@
 node_modules
 \!UNUSED*
 \!ARC*
+package-lock.json
 
 # IDE
 .idea
