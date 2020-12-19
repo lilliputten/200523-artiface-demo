@@ -221,7 +221,7 @@ module.exports = (env, argv) => {
         test: /\.(pcss|css)$/,
         // exclude: /node_modules/, // Some imports may be from `node_modules/...`
         use: [
-          cssHotReload ? 'style-loader' : ExtractCssPlugin.loader, // Hot styles realoading for dev-server
+          cssHotReload ? 'style-loader' : ExtractCssPlugin.loader, // Hot styles reloading for dev-server
           {
             loader: require.resolve('css-loader'),
             options: {
