@@ -13,11 +13,12 @@
   "exampleDependencies": {
     "WebUiCoreGithubSSH": "git+ssh://git@github.com/lilliputten/WebUiCoreDist.git",
     "WebUiDistGithubHttps": "git+https://github.com/lilliputten/WebUiCoreDist.git",
-    "WebUiCoreDistTarball": "http://gitlab.local/lilliputten/WebUiCoreDist/-/archive/master/WebUiCoreDist-master.tar.gz",
+    "WebUiCoreDistTarballMaster": "http://gitlab.local/lilliputten/WebUiCoreDist/-/archive/master/WebUiCoreDist-master.tar.gz",
+    "WebUiCoreDistTarballVersionTag": "http://gitlab.local/lilliputten/WebUiCore/-/archive/v.0.1.10/WebUiCore-v.0.1.10.tar.gz",
     "NOTE": "This section only for demo purposes!"
   },
   "dependencies": {
-    "WebUiCore": "http://gitlab.local/lilliputten/WebUiCoreDist/-/archive/master/WebUiCoreDist-master.tar.gz",
+    "WebUiCore": "http://gitlab.local/lilliputten/WebUiCore/-/archive/v.0.1.18/WebUiCore-v.0.1.18.tar.gz",
     "es5-shim": "^4.5.14",
     "react": "^16.13.1",
     "react-app-polyfill": "^1.0.6",
