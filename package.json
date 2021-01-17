@@ -1,7 +1,8 @@
 {
   "name": "WebUiCoreDemo",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Arti UI Components Library Demo",
+  "changed": "2021.01.17, 20:54",
   "keywords": [
     "UI",
     "webpack",
@@ -13,11 +14,13 @@
   "exampleDependencies": {
     "WebUiCoreGithubSSH": "git+ssh://git@github.com/lilliputten/WebUiCoreDist.git",
     "WebUiDistGithubHttps": "git+https://github.com/lilliputten/WebUiCoreDist.git",
-    "WebUiCoreDistTarball": "http://gitlab.local/lilliputten/WebUiCoreDist/-/archive/master/WebUiCoreDist-master.tar.gz",
+    "WebUiCoreDistRepo": "http://192.168.10.206/lilliputten/WebUiCoreDist/-/archive/master/WebUiCoreDist-master.tar.gz",
+    "WebUiCoreDistBranchWithVersionTag": "http://192.168.10.206/lilliputten/WebUiCore/-/archive/dist.0.2.3/WebUiCore-dist.0.2.3.tar.gz",
+    "WebUiCoreDistBranchLatest": "http://192.168.10.206/lilliputten/WebUiCore/-/archive/dist/WebUiCore-dist.tar.gz",
     "NOTE": "This section only for demo purposes!"
   },
   "dependencies": {
-    "WebUiCore": "http://gitlab.local/lilliputten/WebUiCoreDist/-/archive/master/WebUiCoreDist-master.tar.gz",
+    "WebUiCore": "http://192.168.10.206/lilliputten/WebUiCore/-/archive/dist.0.2.3/WebUiCore-dist.0.2.3.tar.gz",
     "es5-shim": "^4.5.14",
     "react": "^16.13.1",
     "react-app-polyfill": "^1.0.6",
