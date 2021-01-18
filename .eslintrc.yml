@@ -46,7 +46,7 @@ rules:
   requireSemicolons: 0
   semi:
     - 'warn'
-    - 'never'
+    - 'always'
   no-shadow: 0
   react/no-did-update-set-state: 0
   react/jsx-tag-spacing: 0

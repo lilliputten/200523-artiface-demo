@@ -4,19 +4,21 @@
  *  @changed 2020.10.22, 23:30
  */
 
-import 'es5-shim/es5-shim'
-import 'es5-shim/es5-sham'
-import 'react-app-polyfill/ie9'
-import 'react-app-polyfill/stable'
+import 'es5-shim/es5-shim';
+import 'es5-shim/es5-sham';
+import 'react-app-polyfill/ie9';
+import 'react-app-polyfill/stable';
 
-import React from 'react'
-import { render } from 'react-dom'
+import React from 'react';
+import { render } from 'react-dom';
 
-import * as WebUiCore from 'WebUiCore'
-const { Hello } = WebUiCore
-console.log(Hello)
-debugger
-import 'WebUiCore/styles.css'
+import * as WebUiCore from 'WebUiCore';
+const { Hello } = WebUiCore;
+
+import esquery from 'esquery';
+console.log(Hello, esquery);
+debugger;
+import 'WebUiCore/styles.css';
 
 // Root styles
 // import './index.pcss'
@@ -24,4 +26,4 @@ import 'WebUiCore/styles.css'
 render(
   <Hello />,
   document.getElementById('root'),
-)
+);
