@@ -12,18 +12,30 @@ import 'react-app-polyfill/stable';
 import React from 'react';
 import { render } from 'react-dom';
 
-import * as WebUiCore from 'WebUiCore';
-const { Hello } = WebUiCore;
+// import * as WebUiCore from 'WebUiCore';
+// const { Hello } = WebUiCore;
+import WebUiCoreRoot, {
+  Hello,
+  ModalsContainer,
+  utils as WebUiCoreUtils,
+} from 'WebUiCore';
 
-import esquery from 'esquery';
-console.log(Hello, esquery);
-debugger;
-import 'WebUiCore/styles.css';
+import webUiCoreCssMappings from 'WebUiCore/styles.css';
+WebUiCoreUtils.configure.setConfigOptions({ useCssModules: true, cssMappings: webUiCoreCssMappings });
 
 // Root styles
 // import './index.pcss'
 
-render(
-  <Hello />,
-  document.getElementById('root'),
+// // DEBUG
+// console.log('WebUiCoreDemo:DEBUG', WebUiCoreRoot);
+// debugger;
+
+const content = (
+  <WebUiCoreRoot autoModalsContainer={false}>
+    <div className="DemoApp">
+      <Hello />
+      <ModalsContainer />
+    </div>
+  </WebUiCoreRoot>
 );
+render(content, document.getElementById('root'));

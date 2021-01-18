@@ -3,77 +3,77 @@
  *  @changed 2020.05.18, 15:22
  */
 
-const fs = require('fs')
-const path = require('path')
-const dateformat = require('dateformat')
+const fs = require('fs');
+const path = require('path');
+const dateformat = require('dateformat');
 
-const webpack = require('webpack')
-const { CleanWebpackPlugin } = require('clean-webpack-plugin')
-const WebpackBuildNotifierPlugin = require('webpack-build-notifier') // https://www.npmjs.com/package/webpack-build-notifier
+const webpack = require('webpack');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const WebpackBuildNotifierPlugin = require('webpack-build-notifier'); // https://www.npmjs.com/package/webpack-build-notifier
 // const CopyWebpackPlugin = require('copy-webpack-plugin')
-const CreateFileWebpack = require('create-file-webpack')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
+const CreateFileWebpack = require('create-file-webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 // const UglifyJS = require('uglify-js')
-const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 // TODO: OptimizeCSSAssetsPlugin params (source map etc)
-const ExtractCssPlugin = require('mini-css-extract-plugin')
+const ExtractCssPlugin = require('mini-css-extract-plugin');
 
 module.exports = (env, argv) => {
 
-  const mode = argv.mode || 'production'
-  const isCosmos = (process.env.npm_lifecycle_event === 'cosmos') // Runs under react-cosmos?
-  const isDevServer = isCosmos || !!argv.host // (mode === 'none'); // (none = server) // Alternate method: !!argv.host
-  const hotReload = isDevServer
-  const cssHotReload = hotReload // Hot reload css for dev-server
-  const isStats = !!argv.profile
-  const isWatch = !!argv.watch
-  const isDev = (/* isDevServer || */ mode === 'development')
-  const isProd = !isDev // mode === 'production'
-  const useDevTool = true && (isDev || isDevServer) // Need server restart
-  const minimizeBundles = true && isProd // To minimize production bundles
+  const mode = argv.mode || 'production';
+  const isCosmos = (process.env.npm_lifecycle_event === 'cosmos'); // Runs under react-cosmos?
+  const isDevServer = isCosmos || !!argv.host; // (mode === 'none'); // (none = server) // Alternate method: !!argv.host
+  const hotReload = isDevServer;
+  const cssHotReload = hotReload; // Hot reload css for dev-server
+  const isStats = !!argv.profile;
+  const isWatch = !!argv.watch;
+  const isDev = (/* isDevServer || */ mode === 'development');
+  const isProd = !isDev; // mode === 'production'
+  const useDevTool = true && (isDev || isDevServer); // Need server restart
+  const minimizeBundles = false && isProd; // To minimize production bundles
   // // const stripDebugger = true // Comment out all the `debugger` statements from source code
-  const preprocessBundles = true && isProd // To minimize production bundles
-  const sourceMaps = !preprocessBundles // To minimize production bundles
+  const preprocessBundles = true && isProd; // To minimize production bundles
+  const sourceMaps = !preprocessBundles; // To minimize production bundles
   // const extemeUglify = false // Use mangling (WARNING: May broke some code! Don't use without testing!)
-  const DEBUG = true && (isDev || isDevServer)
-  const rootPath = path.resolve(__dirname)
-  const srcPath = path.resolve(__dirname, 'src')
+  const DEBUG = true && (isDev || isDevServer);
+  const rootPath = path.resolve(__dirname);
+  const srcPath = path.resolve(__dirname, 'src');
   // const debugDataPath = path.resolve(__dirname, 'debug-data') // Debug-time data stubs
-  const mixinsPath = path.resolve(srcPath, '!mixins')
+  const mixinsPath = path.resolve(srcPath, '!mixins');
 
   // Additional configuration params from `webpack.env.js` and `webpack.env.local.js`
-  const webpackEnvFile = path.resolve(rootPath, 'webpack.env.js')
-  const webpackEnvLocalFile = path.resolve(rootPath,'webpack.env.local.js')
-  const webpackEnv = fs.existsSync(webpackEnvFile) && require(webpackEnvFile)
-  const webpackEnvLocal = fs.existsSync(webpackEnvLocalFile) && require(webpackEnvLocalFile)
+  const webpackEnvFile = path.resolve(rootPath, 'webpack.env.js');
+  const webpackEnvLocalFile = path.resolve(rootPath,'webpack.env.local.js');
+  const webpackEnv = fs.existsSync(webpackEnvFile) && require(webpackEnvFile);
+  const webpackEnvLocal = fs.existsSync(webpackEnvLocalFile) && require(webpackEnvLocalFile);
   // Merge parameters from config files and command line (eg `--env.DEMO=true`)
-  env = Object.assign({}, webpackEnv, webpackEnvLocal, env)
+  env = Object.assign({}, webpackEnv, webpackEnvLocal, env);
 
-  const THEME = env.THEME || 'default'
-  const THEME_FILE = './themes/' + THEME // For including in `src/config/css.js`
+  const THEME = env.THEME || 'default';
+  const THEME_FILE = './themes/' + THEME; // For including in `src/config/css.js`
   // Set process.env variables for using in included below `css` module.
   // Also see passing variables to source code below.
-  process.env.THEME = THEME
-  process.env.THEME_FILE = THEME_FILE
+  process.env.THEME = THEME;
+  process.env.THEME_FILE = THEME_FILE;
 
   // Project configuration
-  const pkgFile = path.resolve(rootPath, 'package')
-  const pkgConfig = require(pkgFile)
+  const pkgFile = path.resolve(rootPath, 'package');
+  const pkgConfig = require(pkgFile);
 
   // Project version, application title
   const {
     // name: projectName,
     version,
-  } = pkgConfig
+  } = pkgConfig;
 
   // Date stamps
-  const dateStringFormat = 'yyyy.mm.dd HH:MM:ss'
-  const dateTagFormat = 'yymmdd-HHMM'
-  const now = new Date()
-  const timestamp = dateformat(now, dateStringFormat)
-  const buildTagFile = 'build-tag.txt'
-  const timetag = fs.existsSync(buildTagFile) && fs.readFileSync(buildTagFile, 'utf8') || dateformat(now, dateTagFormat)
+  const dateStringFormat = 'yyyy.mm.dd HH:MM:ss';
+  const dateTagFormat = 'yymmdd-HHMM';
+  const now = new Date();
+  const timestamp = dateformat(now, dateStringFormat);
+  const buildTagFile = 'build-tag.txt';
+  const timetag = fs.existsSync(buildTagFile) && fs.readFileSync(buildTagFile, 'utf8') || dateformat(now, dateTagFormat);
 
   /* // UNUSED: CopyWebpackPluginOptions
    * const CopyWebpackPluginOptions = {
@@ -94,13 +94,13 @@ module.exports = (env, argv) => {
    * }
    */
 
-  const htmlFilename = 'index.html'
+  const htmlFilename = 'index.html';
 
-  const buildType = isDevServer ? 'server': 'build' // isDist ? 'dist' : 'demo'
-  const buildMode = isProd ? 'prod' : 'dev'
-  const buildModePostfix = isDev ? '-dev' : ''
-  const buildFolder = buildType + buildModePostfix
-  const buildPath = path.resolve(rootPath, buildFolder)
+  const buildType = isDevServer ? 'server': 'build'; // isDist ? 'dist' : 'demo'
+  const buildMode = isProd ? 'prod' : 'dev';
+  const buildModePostfix = isDev ? '-dev' : '';
+  const buildFolder = buildType + buildModePostfix;
+  const buildPath = path.resolve(rootPath, buildFolder);
 
   const buildTag = [ // Construct general-purpose build tag
     'v.' + version,
@@ -108,15 +108,15 @@ module.exports = (env, argv) => {
     buildType,
     buildMode,
     THEME,
-  ].join('-')
+  ].join('-');
 
-  const useHashes = false // NOTE: Not works with pseudo-dynamic bundles loading method (with hardcoded urls)
-  const bundleName = ({ ext, name, dir } = {}) => (dir || 'js/') + (name || '[name]') + (useHashes && !isWatch && !isDevServer ? '-[contenthash:8]' : '') + (ext || '.js')
+  const useHashes = false; // NOTE: Not works with pseudo-dynamic bundles loading method (with hardcoded urls)
+  const bundleName = ({ ext, name, dir } = {}) => (dir || 'js/') + (name || '[name]') + (useHashes && !isWatch && !isDevServer ? '-[contenthash:8]' : '') + (ext || '.js');
 
-  const jsEntryFile = 'index.jsx' // js source
+  const jsEntryFile = 'index.jsx'; // js source
 
-  const cssConfigFile = path.resolve(srcPath, 'config', 'css.js')
-  const cssConfig = fs.existsSync(cssConfigFile) ? require(cssConfigFile) : {}
+  const cssConfigFile = path.resolve(srcPath, 'config', 'css.js');
+  const cssConfig = fs.existsSync(cssConfigFile) ? require(cssConfigFile) : {};
 
   const postcssPlugins = [
     require('postcss-flexbugs-fixes'),
@@ -145,7 +145,7 @@ module.exports = (env, argv) => {
     }),
     minimizeBundles && require('postcss-csso'),
     require('postcss-reporter'),
-  ].filter(x => x)
+  ].filter(x => x);
 
   const passParameters = { // Pass parameters to code (js & styles)
     rootPath,
@@ -163,11 +163,12 @@ module.exports = (env, argv) => {
     buildTag,
     timestamp,
     version,
-  }
+  };
 
   // Stats waiting only json on output...
   const debugModes = [
     buildTag,
+    'mode:' + mode,
     isCosmos && 'Cosmos',
     isDevServer && 'DevServer',
     isWatch && 'Watch',
@@ -180,17 +181,24 @@ module.exports = (env, argv) => {
     // extemeUglify && 'extemeUglify',
     DEBUG && 'DEBUG',
     THEME && 'theme:' + THEME,
-  ].filter(x => x).join(' ')
+  ].filter(x => x).join(' ');
   if (!isStats) {
-    console.log('Building:', debugModes) // eslint-disable-line no-console
+    console.log('Building:', debugModes); // eslint-disable-line no-console
   }
+
+  const devtoolMode = // @see https://webpack.js.org/configuration/devtool/#devtool
+    // 'inline-source-map'
+    // 'eval-source-map' // debugging -- 2021.01.18, 20:55 -- got error for `module.exports = require("react");`
+    'source-map' // default
+    // false // disable
+  ;
 
   return {
     mode,
     entry: path.resolve(srcPath, jsEntryFile),
     performance: { hints: false },
     watch: isWatch,
-    devtool: useDevTool && 'source-map', // 'cheap-module-source-map',
+    devtool: useDevTool && devtoolMode,
     resolve: {
       extensions: ['.js', '.jsx'],
     },
@@ -207,6 +215,11 @@ module.exports = (env, argv) => {
       host: '0.0.0.0',
     },
     module: { rules: [
+      { // Add sourcemaps for WebUiCore library
+        test: /node_modules.*WebUiCore.*\.(js)$/,
+        // enforce: 'pre',
+        use: ['source-map-loader'],
+      },
       { // JS
         test: /\.(js|jsx)$/,
         exclude: /(node_modules)/,
@@ -217,6 +230,24 @@ module.exports = (env, argv) => {
           cacheDirectory: true,
         },
       },
+      /* { // JS
+       *   test: /\.(js|jsx)$/,
+       *   exclude: /(node_modules)/,
+       *   use: [
+       *     {
+       *       loader: 'babel-loader',
+       *       // use: ['source-map-loader'],
+       *       options: {
+       *         // sourceRoot: '/',
+       *         inputSourceMap: true,
+       *         sourceMaps: true,
+       *         retainLines: true,
+       *         cacheDirectory: true,
+       *       },
+       *     },
+       *   ],
+       * },
+       */
       { // css/postcss
         test: /\.(pcss|css)$/,
         // exclude: /node_modules/, // Some imports may be from `node_modules/...`
@@ -242,7 +273,7 @@ module.exports = (env, argv) => {
       /* TODO:
        * resources (Not for demo)
        */
-    ]},
+    ] },
     plugins: [
       !isDevServer && !isStats && new CleanWebpackPlugin({ // Cleanup before build
         cleanOnceBeforeBuildPatterns: [
@@ -253,9 +284,12 @@ module.exports = (env, argv) => {
         // verbose: true,
         // dry: false,
       }),
+      // new webpack.SourceMapDevToolPlugin({
+      //   // test: /\.(js|jsx)$/,
+      // }),
       new webpack.DefinePlugin({ // Pass constants to source code
         'process.env': Object.entries(passParameters).reduce((data, [key, val]) => {
-          return { ...data, [key]: JSON.stringify(val) }
+          return { ...data, [key]: JSON.stringify(val) };
         }, {})
       }),
       // new CopyWebpackPlugin({ // Simply copies the files over
@@ -289,7 +323,7 @@ module.exports = (env, argv) => {
     ].filter(x => x),
     optimization: {
       // Minimize if not preprocess and minimize flags configured
-      minimize: preprocessBundles || minimizeBundles,
+      minimize: /* preprocessBundles || */ minimizeBundles,
       minimizer: [
         new UglifyJsPlugin({
           test: /\.js$/i,
@@ -384,5 +418,5 @@ module.exports = (env, argv) => {
       // Nice colored output
       colors: true,
     },
-  }
-}
+  };
+};
